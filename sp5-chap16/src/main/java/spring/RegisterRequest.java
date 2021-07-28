@@ -1,10 +1,18 @@
 package spring;
 
-public class RegisterRequest {
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
+public class RegisterRequest {
+	@NotBlank
+	@Email
 	private String email;
+	@NotEmpty
 	private String password;
+	@NotEmpty
 	private String confirmPassword;
+	@NotBlank
 	private String name;
 
 	public String getEmail() {
@@ -43,12 +51,3 @@ public class RegisterRequest {
 		return password.equals(confirmPassword);
 	}
 }
-
-/* registerReques : 커맨드 객체에 접근할 때 사용한 속성 이름.
-스프링 mvc는 커맨드 객체의 첫 글자를 소문자로 바꾼 클래스이름과 동일한 속성 이름을 사용해
-커맨드 객체를 뷰에 전달. 즉 클래스명이 RegisterRequest이므로, registerRequest
-라는 이름을 이용해 객체 접근이 가능
-@PostMapping("/register/step3")
-public String handleStep3(RegisterRequest regReq) { }
-에서, RegisterRequest가 커맨드객체이므로, 뷰 코드는 이름을 사용해 registerRequest.name으로 접근
-*/

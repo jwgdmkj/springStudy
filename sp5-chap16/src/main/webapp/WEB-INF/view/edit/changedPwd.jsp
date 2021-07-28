@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><spring:message code="login.title" /></title>
+    <title><spring:message code="change.pwd.title" /></title>
 </head>
 <body>
     <p>
-        <spring:message code="login.done" />
+        <spring:message code="change.pwd.done" />
     </p>
     <p>
         <a href="<c:url value='/main'/>">

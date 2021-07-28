@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
              http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	version="3.1">
+	version="3.1" metadata-complete="true">
 
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
@@ -20,9 +20,9 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				Config.MemberConfig
-				Config.MvcConfig
-				Config.ControllerConfig
+				config.MemberConfig
+				config.MvcConfig
+				config.ControllerConfig
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

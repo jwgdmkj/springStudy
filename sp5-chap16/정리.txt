@@ -1,0 +1,22 @@
+<회원가입 순서>
+webapp-register-step2에서 registerRequest객체에 전달 시, 
+spring - RegisterRequest에서 set을 통해 각 변수에 저장
+
+RegisterController에서, @PostMapping을 통해 /register/step2에 왔을 때의 일을 처리함
+또한 뷰이름을 리턴하면, 이는 곧 리턴한 뷰이름의 jsp를 실행하게 된다.
+step3에서는, 해당 RegisterRequest 객체를 전달받으면, 이를 validate한 다음, error여부에 따라 
+다음에 return할 jsp를 정한다. 
+만일 문제 없다면, memberRegisterService.regist를 실행한다.
+
+해당 req의 email을 얻은 다음, memberDao에서 selectByEamil을 통해 
+DB에서 해당 email을 갖는 MEMBER을 리턴받는다.
+따라서, 새로 추가하는 애일 것이므로, 반드시 NULL이어야 할 것이다. 널이 아니라면 중복이메일이다.
+registerRequest에서 각각 get한 정보들을 한데 모아 새 Member 객체로 만든 다음, 이를 insert한다.
+다음으로 이것의 id를 얻어 리턴한다. MemberDao 클래스의 insert를 보면, 
+키홀더를 얻어 고유키를 획득한 다음, PreparedStatement형 pstmt을 하나 선언한 다음,
+인덱스 파라미터를 각각 set한다. 다음으로 pstmt을 리턴하면, 
+해당 멤버는 id를 set하게 되는 것이다.
+이 때, SQL문에서 마지막 인자 new String[] ID가 keyHolder에 해당하며, 먼저 DB에 등록이 완료된 다음
+이 keyholder을 long 타입으로 만든 것을 member의 ID에 SET하는 것이다.
+
+현재 로그인/등록시에 비번 암호화. 삭제/비번변경시에 암호화 필요

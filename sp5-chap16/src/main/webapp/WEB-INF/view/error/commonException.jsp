@@ -5,6 +5,6 @@
     <title>에러</title>
 </head>
 <body>
-    존재하지 않는 회원입니다.
+    에러가 발생했습니다.
 </body>
 </html>

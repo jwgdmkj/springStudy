@@ -2,15 +2,19 @@ package spring;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Member {
 
 	private Long id;
 	private String email;
+	@JsonIgnore
 	private String password;
 	private String name;
+	//@JsonFormat(shape = Shape.STRING)
 	private LocalDateTime registerDateTime;
 
-	public Member(String email, String password, 
+	public Member(String email, String password,
 			String name, LocalDateTime regDateTime) {
 		this.email = email;
 		this.password = password;
@@ -47,8 +51,9 @@ public class Member {
 			throw new WrongIdPasswordException();
 		this.password = newPassword;
 	}
-	
+
 	public boolean matchPassword(String password) {
 		return this.password.equals(password);
 	}
+
 }
