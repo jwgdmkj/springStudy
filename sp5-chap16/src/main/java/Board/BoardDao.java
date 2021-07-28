@@ -123,7 +123,8 @@ public class BoardDao {
 	}
 
 	public List<Board> selectAll() {
-		List<Board> results = jdbcTemplate.query("select * from BULLETIN",
+		List<Board> results = jdbcTemplate.query("select * from BULLETIN "
+				+ "ORDER BY NUM DESC",
 				bodRowMapper);
 		return results;
 	}

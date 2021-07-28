@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import add_on.EncryptionUtils;
 import spring.AuthInfo;
 import spring.ChangePasswordService;
 import spring.WithdrawService;
@@ -37,13 +38,18 @@ public class WithdrawController {
 	public String submit(@ModelAttribute("command") WithdrawCommand wthCmd,
 			Errors errors, HttpSession session) {
 		new WithdrawValidator().validate(wthCmd, errors);
+		EncryptionUtils E = new EncryptionUtils();
+		//E.encryptSHA256(loginCommand.getPassword())
+		
 		if(errors.hasErrors()) {
 			return "edit/withdraw";
 		}
 		
 		AuthInfo authInfo=(AuthInfo) session.getAttribute("authInfo");
 		try {
-			withdrawService.withdraw(authInfo.getEmail(), wthCmd.getRealPassword());
+			//획득한 계정의 pw의 암호화
+			withdrawService.withdraw(authInfo.getEmail(),
+					E.encryptSHA256(wthCmd.getRealPassword()));
 			session.invalidate();
 			//여기 수정
 			return "main";

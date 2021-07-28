@@ -15,6 +15,7 @@ public class WithdrawService {
 		if (member == null)
 			throw new MemberNotFoundException();
 		
+		//암호화되어 전달된 pw가 member의 pw와 같은지 확인
 		if(!member.matchPassword(realPwd))
 			throw new WrongIdPasswordException();
 		

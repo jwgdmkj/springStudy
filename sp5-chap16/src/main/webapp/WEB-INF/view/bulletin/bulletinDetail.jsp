@@ -824,14 +824,14 @@
 </c:if>
 	
 	<!-- 댓글 입력 -->
-	 <table border="1" width="1200px" bordercolor="#46AA46">
+<!--  <table border="1" width="1200px" bordercolor="#46AA46">
                    <tr>
                        <td width="500px">
                         댓글: <input type="text" id="reply_writer" 
                         name="reply_writer" style="width:170px;" 
                         maxlength="10" placeholder="작성자"/>
                       
-                      <!-- reply_save 버튼을 클릭시 위의 reply_save func이 발동 -->
+                      <!-- reply_save 버튼을 클릭시 위의 reply_save func이 발동 
                         <button id="reply_save" name="reply_save">댓글 등록</button>
                     </td>
                    </tr>
@@ -842,7 +842,7 @@
                             </textarea>
                        </td>
                    </tr>
-               </table>
+               </table>-->
 	
 </body>
 </html>

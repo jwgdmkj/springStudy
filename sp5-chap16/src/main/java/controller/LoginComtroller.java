@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import add_on.EncryptionUtils;
 import spring.AuthInfo;
 import spring.AuthService;
 import spring.WrongIdPasswordException;
@@ -80,14 +81,17 @@ public class LoginComtroller {
 	public String submit(LoginCommand loginCommand, Errors errors, 
 			HttpSession session, HttpServletResponse response) {
 		new LoginCommandValidator().validate(loginCommand, errors);
+		EncryptionUtils E = new EncryptionUtils();
+		
 		if(errors.hasErrors()) {
 			return "login/loginForm";
 		}
 		try {
-			//이메일과 비번이 일치하는지 확인
+			//이메일과 비번이 일치하는지 확인 ( 암호화된 걸 확인 )
 			AuthInfo authInfo=authService.authenticate(
 					loginCommand.getEmail(),
-					loginCommand.getPassword());
+					E.encryptSHA256(loginCommand.getPassword()));
+			
 			//로그인 성공시, HttpSession의 authinfo 속성에 인증정보객체(authInfo)를 저장
 			//로그아웃은, HttpSession을 제거하면 됨. LogoutController을 추가한다
 			session.setAttribute("authInfo", authInfo);
