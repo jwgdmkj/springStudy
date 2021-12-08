@@ -20,3 +20,13 @@ registerRequest에서 각각 get한 정보들을 한데 모아 새 Member 객체
 이 keyholder을 long 타입으로 만든 것을 member의 ID에 SET하는 것이다.
 
 현재 로그인/등록시에 비번 암호화. 삭제/비번변경시에 암호화 필요
+
+
+<로그인 순서>
+LoginComtroller에서, AuthService라고 하는 객체를 생성한다.
+이 AuthService 객체는, memberDao를 주입받는데, 주입받은 memberDao 객체 중에서
+받은 email과 password를 통해, Dao중에서 해당 email을 갖는 member 객체를 찾아,
+그 password가 맞는지 확인한 후, 맞는다면 새로운 AuthInfo 객체를 내보낸다.
+이 AuthInfo에는 그 member의 ID와 EMAIL, NAME이 들어있다.
+즉, AuthInfo는 로그인에 성공한 유저의 ID와 EMAIL, NAME을 가지고 있는 객체이다.
+
